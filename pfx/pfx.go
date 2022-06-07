@@ -41,7 +41,6 @@ func GetPublicAndPrivateKeyFromPfx(pfxPath, privatePassword string) (privateKey 
 	if err != nil {
 		return
 	}
-	fmt.Println(bytes)
 	// 因为pfx证书公钥和密钥是成对的，所以要先转成pem.Block
 	blocks, err := pkcs12.ToPEM(bytes, privatePassword)
 	if err != nil {
