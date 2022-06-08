@@ -10,7 +10,6 @@ import (
 	"crypto/x509"
 	"encoding/base64"
 	"errors"
-	"fmt"
 	"golang.org/x/crypto/pkcs12"
 	"io/ioutil"
 	"os"
@@ -64,24 +63,26 @@ func GetPublicAndPrivateKeyFromPfx(pfxPath, privatePassword string) (privateKey 
 	return
 }
 
-// PrintPublicKey
+// GetPublicKeyString
 /**
- *  @Description: 打印公钥
+ *  @Description: 获取Base64编码的公钥
  *  @param publicKey
+ *  @return publicKeyString
  */
-func PrintPublicKey(publicKey *rsa.PublicKey) {
+func GetPublicKeyString(publicKey *rsa.PublicKey) (publicKeyString string) {
 	publicKeyByte := x509.MarshalPKCS1PublicKey(publicKey)
-	publicKeyString := base64.StdEncoding.EncodeToString(publicKeyByte)
-	fmt.Println(publicKeyString)
+	publicKeyString = base64.StdEncoding.EncodeToString(publicKeyByte)
+	return
 }
 
-// PrintPrivateKey
+// GetPrivateKeyString
 /**
- *  @Description: 打印私钥
+ *  @Description: 获取Base64编码的私钥
  *  @param privateKey
+ *  @return privateKeyString
  */
-func PrintPrivateKey(privateKey *rsa.PrivateKey) {
+func GetPrivateKeyString(privateKey *rsa.PrivateKey) (privateKeyString string) {
 	privateKeyByte := x509.MarshalPKCS1PrivateKey(privateKey)
-	publicKeyString := base64.StdEncoding.EncodeToString(privateKeyByte)
-	fmt.Println(publicKeyString)
+	privateKeyString = base64.StdEncoding.EncodeToString(privateKeyByte)
+	return
 }

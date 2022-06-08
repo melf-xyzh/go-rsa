@@ -108,9 +108,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pfx.PrintPublicKey(	publicKey)
+	pfx.GetPublicKeyString(publicKey)
 	publicKey = certificate.PublicKey.(*rsa.PublicKey)
-	pfx.PrintPublicKey(	publicKey)
+	pfx.GetPublicKeyString(publicKey)
 
 	// 加密
 	encrypt, err := myrsa.RsaEncrypt(publicKey, content)
@@ -119,7 +119,7 @@ func main() {
 	}
 	fmt.Println(encrypt)
 	// 解密
-	data, err := myrsa.RsaDecrypt(privateKey,encrypt)
+	data, err := myrsa.RsaDecrypt(privateKey, encrypt)
 	if err != nil {
 		return
 	}
